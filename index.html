@@ -1,0 +1,82 @@
+<html>
+<head>
+<style>
+	input[type=email],[type=password]
+{
+	width:20%;
+	box-sizing:border-box;
+	display:inline-block;
+	border-radius:4px;
+	border:1px solid ;
+	margin:8px 0;
+
+}
+	button
+{
+	width:10%;
+	background-color: #4682B4;	
+}
+</style>
+<script>
+	//function vaidate user 
+function Val()
+{
+	var uname="admin@gmail.com";
+	var pas="123";
+	var user=document.getElementById("uname").value;
+	var upass=document.getElementById("pass").value;
+		if(uname==user && pas==upass)
+			{
+				//window.location.href = "home.html";
+				//window.location.href ="home.html?user="+user;
+				window.open("home.html?user=" +user);
+			//	window.location.href="home.html?user="+user;
+				//alert(user);
+				
+			}
+		else
+		{ 
+			if(user=="" && upass=="")
+			{
+			   	alert("Sorry!!!! enter username and password");
+			}
+			else if(user==""){	
+
+				//document.getElementById("btn").style.backgroundColor = "red";
+				alert("enter user name");
+				//return false;
+				}
+			
+			else if (upass=="") {
+			//document.getElementById("btn").style.backgroundColor = "red";
+				alert("enter password");
+				}	
+			else if(uname!=user ) {
+				alert(" user name  is incorrect");
+
+			}	
+			else if(upass!=pas)
+			{
+					alert(" password is incorrect ");
+			}
+		else {
+			alert("username or password incorrect ");
+		}	
+			}
+		}
+	
+</script>
+</head>
+
+<body>
+<center>
+<h3> Login Here </h3>
+<form onsubmit="Val()" >
+<input id="uname" type="email" placeholder="Enter User Name"/><br><br>
+<input id="pass" type="password" placeholder="Enter Password"/><br><br>
+
+ <button id="btn"> Login </button>
+</center>
+</from>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/moviecard.css">
+	<title>
+		
+	</title>
+</head>
+<body>
+	<div class="maindiv">
+			<div id="mviename">
+			</div>
+			<div id="mvierating">
+			</div>
+			<div id="mviestars" >
+			</div>
+			<div id="mviereviw"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var detaiUR=window.location.href;
+			//alert(userural);
+			var newUr= new URL(detaiUR);
+			//alert(newurl);
+			var title=newUr.searchParams.get("title");
+			//alert(title);
+        	 var rating=newUr.searchParams.get("rating");
+        // alert(rating);
+      		  var star=newUr.searchParams.get("Stars");
+			//alert(star);
+			var review=newUr.searchParams.get("review");
+			//alert(review);
+   			 document.getElementById("mviename").innerHTML=title;
+    		 document.getElementById("mvierating").innerHTML="Rating:\t"+rating;
+    		 document.getElementById("mviestars").innerHTML="Stars:\t"+star;
+	 		document.getElementById("mviereviw").innerHTML="Review:\t"+review;
+
+</script>
+</html>

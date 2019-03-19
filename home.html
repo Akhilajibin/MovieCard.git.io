@@ -1,0 +1,107 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/moviecard.css">
+</head>
+<body>
+	<!-- <div id="username"> </div> -->
+	<div id="subdiv"></div><br>
+	<br><div id="divsearch">
+			<input type="text" placeholder="Search" id="search"onkeyup="searchmovie()">
+		</div>
+		<div id="listview"></div>
+		
+</body>
+<script type="text/javascript">
+			var userural=window.location.href;
+			//alert(userural);
+			var newurl= new URL(userural);
+			//alert(newurl);
+			var user=newurl.searchParams.get("user");
+			//document.write(user);
+			document.getElementById("subdiv").innerHTML='<p id="display">'+user+'</p>';
+					//set data in localStorage
+			localStorage.setItem('moviedetails',JSON.stringify([
+				{title:"Carbon", Stars:" Fahadh Faasil, Mamta Mohandas, Manikandan R. Achari, Chethan Jayalal",Rate:6.3,img:"img/carbon.jpg",review:"xtyb"},
+				{title:"Poomaram", Stars:" Kalidas Jayaram, Kunchacko Boban, Neeta Pillai, Meera Jasmine",Rate:6.9,img:"img/poomaram.jpg",review:"a"},
+				{title:"Joseph", Stars:" Joju George, Aathmiya, Dileesh Pothan, James Eliya",Rate:8.4,img:"img/joseph.jpg",review:"d"},
+				{title:"Aami", Stars:" Manju Warrier, Murali Gopy, Tovino Thomas, Anoop Menon",Rate:6.4,img:"img/aami.jpg",review:"xb"},
+				{title:"Njan Prakashan", Stars:"Fahadh Faasil, Sreenivasan, Nikhila Vimal, Devika Sanjay",Rate:8,img:"img/prakashan.jpg",review:"ui"},
+				{title:"Varathan", Stars:" Fahadh Faasil, Aishwarya Lekshmi, Sharafudheen, Dileesh Pothan",Rate:7.2,img:"img/varathan.jpg",review:"yb"},
+				{title:"Padayottam", Stars:"Biju Menon, Dileesh Pothan, Saiju Kurup, Sudhi Koppa",Rate:6.2,img:"img/padaottam.jpg",review:"x"}
+					])); 
+			//retrive data from localStorage
+		var movieArray=JSON.parse(localStorage.getItem('moviedetails'));
+		var i;
+			var content="";
+			for(i=0;i<movieArray.length;i++) {
+				
+					 content=content+'<div class="movie" onclick="review('+ i +')" id="movie' +i+'">\
+					<div>\
+					<h3>'+movieArray[i]["title"]+'</h3>\
+					</div>\
+					<div>\
+					<img src="'+movieArray[i]["img"]+'"></img>\
+					</div>\
+					<div>\
+					'+movieArray[i]["Rate"]+'/10</div>\
+					</div>';
+
+			}
+		console.log(content);
+	document.getElementById("listview").innerHTML=content;
+		
+ // functin for display details
+
+		 function review(i)
+		{
+		
+			var name=movieArray[i]["title"];
+			 var rating=movieArray[i]["Rate"];
+			 var star=movieArray[i]["Stars"];
+			 var review=movieArray[i]["review"];
+			window.location.href="details.html?title="+name+"&rating="+rating+"&Stars="+star+"&review="+review;
+		}
+
+//search mvie
+function searchmovie() {
+
+	// body...
+			var content="";
+			var searchmvie=document.getElementById("search").value;
+				var f=0;
+				for (var i = 0; i< movieArray.length ; i++) {
+					var name=movieArray[i]["title"];
+				//alert(name);
+						if(name.search(searchmvie)>=0)
+							{
+								f=1;
+								var content=content+'<div class="movie" onclick="review('+ i +')" id="movie' +i+'">\
+								<div>\
+								<h3>'+movieArray[i]["title"]+'</h3>\
+								</div>\
+								<div>\
+								<img src="'+movieArray[i]["img"]+'"></img>\
+								</div>\
+								<div>\
+								'+movieArray[i]["Rate"]+'/10</div>\
+								</div>';
+
+						}
+
+				}
+				//
+				if (f==0) {
+					document.write("Sorry No Data Found");
+
+					//alert("Sorry No Data Found");
+						//document.getElementById("shwmsg").innerHTML="Sorry No Data Found";
+						//document.getElementById("listview").innerHTML="Sorry No Data Found";
+				}
+
+				document.getElementById("listview").innerHTML=content;
+
+			}
+
+
+	</script>
+</html>
